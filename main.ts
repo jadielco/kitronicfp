@@ -1,36 +1,43 @@
-input.onButtonPressed(Button.A, function () {
+input.onButtonPressed(Button.A, function on_button_pressed_a() {
+    
     danceFlag = true
 })
-function Driveback () {
+function Driveback() {
     kitronik_klip_motor.motorOn(kitronik_klip_motor.Motors.Motor1, kitronik_klip_motor.MotorDirection.Reverse, 100)
     kitronik_klip_motor.motorOn(kitronik_klip_motor.Motors.Motor2, kitronik_klip_motor.MotorDirection.Reverse, 100)
     basic.pause(800)
 }
-function Turnleft () {
+
+function Turnleft() {
     kitronik_klip_motor.motorOn(kitronik_klip_motor.Motors.Motor1, kitronik_klip_motor.MotorDirection.Reverse, 100)
     kitronik_klip_motor.motorOn(kitronik_klip_motor.Motors.Motor2, kitronik_klip_motor.MotorDirection.Forward, 100)
     basic.pause(400)
 }
-input.onButtonPressed(Button.B, function () {
+
+input.onButtonPressed(Button.B, function on_button_pressed_b() {
+    
     danceFlag = false
 })
-function DriveForward () {
+function DriveForward() {
     kitronik_klip_motor.motorOn(kitronik_klip_motor.Motors.Motor1, kitronik_klip_motor.MotorDirection.Forward, 100)
     kitronik_klip_motor.motorOn(kitronik_klip_motor.Motors.Motor2, kitronik_klip_motor.MotorDirection.Forward, 100)
     basic.pause(800)
 }
-function Turnrigth () {
+
+function Turnrigth() {
     kitronik_klip_motor.motorOn(kitronik_klip_motor.Motors.Motor1, kitronik_klip_motor.MotorDirection.Forward, 100)
     kitronik_klip_motor.motorOn(kitronik_klip_motor.Motors.Motor2, kitronik_klip_motor.MotorDirection.Reverse, 100)
     basic.pause(400)
 }
-function Stop () {
+
+function Stop() {
     kitronik_klip_motor.motorOff(kitronik_klip_motor.Motors.Motor1)
     kitronik_klip_motor.motorOff(kitronik_klip_motor.Motors.Motor2)
 }
+
 let danceFlag = false
 danceFlag = true
-basic.forever(function () {
+basic.forever(function on_forever() {
     if (danceFlag) {
         DriveForward()
         Turnleft()
@@ -48,4 +55,5 @@ basic.forever(function () {
     } else {
         Stop()
     }
+    
 })
