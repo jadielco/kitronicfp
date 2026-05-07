@@ -1,85 +1,67 @@
-from microbit import sleep, button_a, button_b
-import kitronik_klip_motor
+def on_button_pressed_a():
+    global danceFlag
+    danceFlag = True
+input.on_button_pressed(Button.A, on_button_pressed_a)
 
-dance_flag = True
-
-def drive_back():
-    kitronik_klip_motor.motor_on(
-        kitronik_klip_motor.Motors.MOTOR1,
+def Driveback():
+    kitronik_klip_motor.motor_on(kitronik_klip_motor.Motors.MOTOR1,
         kitronik_klip_motor.MotorDirection.REVERSE,
-        100
-    )
-    kitronik_klip_motor.motor_on(
-        kitronik_klip_motor.Motors.MOTOR2,
+        100)
+    kitronik_klip_motor.motor_on(kitronik_klip_motor.Motors.MOTOR2,
         kitronik_klip_motor.MotorDirection.REVERSE,
-        100
-    )
-    sleep(800)
-
-def turn_left():
-    kitronik_klip_motor.motor_on(
-        kitronik_klip_motor.Motors.MOTOR1,
+        100)
+    basic.pause(800)
+def Turnleft():
+    kitronik_klip_motor.motor_on(kitronik_klip_motor.Motors.MOTOR1,
         kitronik_klip_motor.MotorDirection.REVERSE,
-        100
-    )
-    kitronik_klip_motor.motor_on(
-        kitronik_klip_motor.Motors.MOTOR2,
+        100)
+    kitronik_klip_motor.motor_on(kitronik_klip_motor.Motors.MOTOR2,
         kitronik_klip_motor.MotorDirection.FORWARD,
-        100
-    )
-    sleep(400)
+        100)
+    basic.pause(400)
 
-def drive_forward():
-    kitronik_klip_motor.motor_on(
-        kitronik_klip_motor.Motors.MOTOR1,
-        kitronik_klip_motor.MotorDirection.FORWARD,
-        100
-    )
-    kitronik_klip_motor.motor_on(
-        kitronik_klip_motor.Motors.MOTOR2,
-        kitronik_klip_motor.MotorDirection.FORWARD,
-        100
-    )
-    sleep(800)
+def on_button_pressed_b():
+    global danceFlag
+    danceFlag = False
+input.on_button_pressed(Button.B, on_button_pressed_b)
 
-def turn_right():
-    kitronik_klip_motor.motor_on(
-        kitronik_klip_motor.Motors.MOTOR1,
+def DriveForward():
+    kitronik_klip_motor.motor_on(kitronik_klip_motor.Motors.MOTOR1,
         kitronik_klip_motor.MotorDirection.FORWARD,
-        100
-    )
-    kitronik_klip_motor.motor_on(
-        kitronik_klip_motor.Motors.MOTOR2,
+        100)
+    kitronik_klip_motor.motor_on(kitronik_klip_motor.Motors.MOTOR2,
+        kitronik_klip_motor.MotorDirection.FORWARD,
+        100)
+    basic.pause(800)
+def Turnrigth():
+    kitronik_klip_motor.motor_on(kitronik_klip_motor.Motors.MOTOR1,
+        kitronik_klip_motor.MotorDirection.FORWARD,
+        100)
+    kitronik_klip_motor.motor_on(kitronik_klip_motor.Motors.MOTOR2,
         kitronik_klip_motor.MotorDirection.REVERSE,
-        100
-    )
-    sleep(400)
-
-def stop():
+        100)
+    basic.pause(400)
+def Stop():
     kitronik_klip_motor.motor_off(kitronik_klip_motor.Motors.MOTOR1)
     kitronik_klip_motor.motor_off(kitronik_klip_motor.Motors.MOTOR2)
+danceFlag = False
+danceFlag = True
 
-while True:
-    if button_a.was_pressed():
-        dance_flag = True
-    if button_b.was_pressed():
-        dance_flag = False
-
-    if dance_flag:
-        drive_forward()
-        turn_left()
-        drive_back()
-        turn_right()
-        turn_right()
-        drive_back()
-        turn_right()
-        drive_back()
-        drive_forward()
-        turn_left()
-        turn_right()
-        turn_right()
-        turn_right()
+def on_forever():
+    if danceFlag:
+        DriveForward()
+        Turnleft()
+        Driveback()
+        Turnrigth()
+        Turnrigth()
+        Driveback()
+        Turnrigth()
+        Driveback()
+        DriveForward()
+        Turnleft()
+        Turnrigth()
+        Turnrigth()
+        Turnrigth()
     else:
-        stop()
-
-    sleep(10)
+        Stop()
+basic.forever(on_forever)
