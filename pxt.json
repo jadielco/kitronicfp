@@ -1,0 +1,29 @@
+{
+    "name": "KitronicFp",
+    "description": "",
+    "dependencies": {
+        "core": "*",
+        "radio": "*",
+        "microphone": "*",
+        "pxt-kitronik-move-motor": "github:kitronikltd/pxt-kitronik-move-motor#v0.4.20",
+        "pxt-kitronik-klip-motor": "github:kitronikltd/pxt-kitronik-klip-motor#v1.2.0",
+        "microbit-robot": "github:microsoft/microbit-robot#v2.7.4"
+    },
+    "files": [
+        "main.blocks",
+        "main.ts",
+        "README.md",
+        "main.py"
+    ],
+    "testFiles": [
+        "test.ts"
+    ],
+    "targetVersions": {
+        "target": "8.0.21",
+        "targetId": "microbit"
+    },
+    "supportedTargets": [
+        "microbit"
+    ],
+    "preferredEditor": "blocksprj"
+}
